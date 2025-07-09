@@ -1,0 +1,14 @@
+C:\Users\zamzam\Desktop\developers\xisaabApp\bin\Debug\net9.0\xisaabApp.exe
+C:\Users\zamzam\Desktop\developers\xisaabApp\bin\Debug\net9.0\xisaabApp.deps.json
+C:\Users\zamzam\Desktop\developers\xisaabApp\bin\Debug\net9.0\xisaabApp.runtimeconfig.json
+C:\Users\zamzam\Desktop\developers\xisaabApp\bin\Debug\net9.0\xisaabApp.dll
+C:\Users\zamzam\Desktop\developers\xisaabApp\bin\Debug\net9.0\xisaabApp.pdb
+C:\Users\zamzam\Desktop\developers\xisaabApp\obj\Debug\net9.0\xisaabApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zamzam\Desktop\developers\xisaabApp\obj\Debug\net9.0\xisaabApp.AssemblyInfoInputs.cache
+C:\Users\zamzam\Desktop\developers\xisaabApp\obj\Debug\net9.0\xisaabApp.AssemblyInfo.cs
+C:\Users\zamzam\Desktop\developers\xisaabApp\obj\Debug\net9.0\xisaabApp.csproj.CoreCompileInputs.cache
+C:\Users\zamzam\Desktop\developers\xisaabApp\obj\Debug\net9.0\xisaabApp.dll
+C:\Users\zamzam\Desktop\developers\xisaabApp\obj\Debug\net9.0\refint\xisaabApp.dll
+C:\Users\zamzam\Desktop\developers\xisaabApp\obj\Debug\net9.0\xisaabApp.pdb
+C:\Users\zamzam\Desktop\developers\xisaabApp\obj\Debug\net9.0\xisaabApp.genruntimeconfig.cache
+C:\Users\zamzam\Desktop\developers\xisaabApp\obj\Debug\net9.0\ref\xisaabApp.dll
