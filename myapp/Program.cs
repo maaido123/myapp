@@ -2,10 +2,10 @@
 
 
 //// Variables
-//string name = "Farhio Bashiir";
+//string name = "samsam";
 //Console.WriteLine(name);
 
-//string motherName = "Saido Ali";
+//string motherName = "maryan Ali";
 //Console.WriteLine(motherName);
 
 //string dobString = "1990-06-25";  // Taariikhda dhalashada string ahaan
@@ -89,3 +89,111 @@ for (loop = 1; loop <= 10; loop++)
 
 }
 Console.WriteLine("iskudarka" +iskuday);
+
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        const string totalFile = "total.txt";
+
+        // Read previous total from file or start at 0
+        int totalCorrect = 0;
+        if (File.Exists(totalFile))
+        {
+            string content = File.ReadAllText(totalFile);
+            int.TryParse(content, out totalCorrect);
+        }
+
+        // Student information
+        Console.Write("Please enter your name: ");
+        string name = Console.ReadLine() ?? string.Empty;
+
+        Console.Write("Please enter your ID: ");
+        string id = Console.ReadLine() ?? string.Empty;
+
+        // Choose the type of math operation
+        Console.WriteLine("\nMath operations:");
+        Console.WriteLine("1. Addition");
+        Console.WriteLine("2. Subtraction");
+        Console.WriteLine("3. Multiplication");
+        Console.WriteLine("4. Division");
+
+        Console.Write("Enter your choice (1-4): ");
+        string choice = Console.ReadLine() ?? string.Empty;
+
+        string[,] questions = new string[2, 1];
+        int[] correctAnswers = new int[2];
+
+        bool validChoice = true;
+
+        switch (choice)
+        {
+            case "1":
+                questions[0, 0] = "17 + 5"; correctAnswers[0] = 22;
+                questions[1, 0] = "33 + 7"; correctAnswers[1] = 40;
+                break;
+            case "2":
+                questions[0, 0] = "20 - 5"; correctAnswers[0] = 15;
+                questions[1, 0] = "100 - 33"; correctAnswers[1] = 67;
+                break;
+            case "3":
+                questions[0, 0] = "3 * 4"; correctAnswers[0] = 12;
+                questions[1, 0] = "7 * 6"; correctAnswers[1] = 42;
+                break;
+            case "4":
+                questions[0, 0] = "12 / 4"; correctAnswers[0] = 3;
+                questions[1, 0] = "50 / 10"; correctAnswers[1] = 5;
+                break;
+            default:
+                validChoice = false;
+                Console.WriteLine("Invalid choice!");
+                break;
+        }
+
+        if (!validChoice)
+            return;
+
+        Console.WriteLine("\n--- Questions ---");
+        int score = 0;
+
+        for (int i = 0; i < 2; i++)
+        {
+            Console.Write($"Q{i + 1}: {questions[i, 0]} = ? ");
+            string? userInput = Console.ReadLine();
+
+            if (int.TryParse(userInput ?? string.Empty, out int userAnswer))
+            {
+                if (userAnswer == correctAnswers[i])
+                {
+                    Console.WriteLine("Correct\n");
+                    score++;
+                }
+                else
+                {
+                    Console.WriteLine($"Wrong! The correct answer is: {correctAnswers[i]}\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Invalid input. The correct answer is: {correctAnswers[i]}\n");
+            }
+        }
+
+        // Update total correct answers
+        totalCorrect += score;
+        File.WriteAllText(totalFile, totalCorrect.ToString());
+
+        string date = DateTime.Now.ToString("yyyy-MM-dd");
+
+        // Display result
+        Console.WriteLine("\n----- Result -----");
+        Console.WriteLine($"Name: {name}");
+        Console.WriteLine($"ID: {id}");
+        Console.WriteLine($"Correct answers: {score} / 2");
+        Console.WriteLine($"Date: {date}");
+        Console.WriteLine($"Total correct answers overall: {totalCorrect}");
+    }
+}
