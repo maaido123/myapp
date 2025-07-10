@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("xisaabApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a0aa34bc5d855e9c9c5ef3a2ab312f7e612023ce")]
 [assembly: System.Reflection.AssemblyProductAttribute("xisaabApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("xisaabApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

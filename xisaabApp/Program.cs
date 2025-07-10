@@ -3,104 +3,60 @@ using System.IO;
 
 class Program
 {
+    const int NumQuestions = 5;
+    const string TotalFile = "total.txt";
+
     static void Main()
     {
-        string date = DateTime.Now.ToString("yyyy-MM-dd");
-        string dailyTotalFile = $"total_{date}.txt";
+        int totalCorrect = File.Exists(TotalFile) && int.TryParse(File.ReadAllText(TotalFile), out int r) ? r : 0;
+        Console.Write("Enter your name: ");
+        string name = Console.ReadLine() ?? "";
+        Console.Write("Enter your ID: ");
+        string id = Console.ReadLine() ?? "";
 
-        // Read previous daily total from file or start at 0
-        int dailyTotalCorrect = 0;
-        if (File.Exists(dailyTotalFile))
+        Console.WriteLine("\nMath Operations:\n1. +  2. -  3. *  4. /");
+        Console.Write("Choose (1-4): ");
+        string? op = Console.ReadLine();
+        if (op is not ("1" or "2" or "3" or "4")) return;
+
+        var rnd = new Random();
+        string[] questions = new string[NumQuestions];
+        int[] answers = new int[NumQuestions];
+
+        for (int i = 0; i < NumQuestions; i++)
         {
-            string content = File.ReadAllText(dailyTotalFile);
-            int.TryParse(content, out dailyTotalCorrect);
-        }
-
-        // User info
-        Console.Write("Please enter your name: ");
-        string name = Console.ReadLine() ?? string.Empty;
-
-        Console.Write("Please enter your ID: ");
-        string id = Console.ReadLine() ?? string.Empty;
-
-        // Choose quiz type
-        Console.WriteLine("\nTypes of calculations:");
-        Console.WriteLine("1. Addition");
-        Console.WriteLine("2. Subtraction");
-        Console.WriteLine("3. Multiplication");
-        Console.WriteLine("4. Division");
-
-        Console.Write("Enter your choice (1-4): ");
-        string choice = Console.ReadLine() ?? string.Empty;
-
-        string[,] questions = new string[2, 1];
-        int[] correctAnswers = new int[2];
-
-        bool validChoice = true;
-
-        switch (choice)
-        {
-            case "1":
-                questions[0, 0] = "17 + 5"; correctAnswers[0] = 22;
-                questions[1, 0] = "33 + 7"; correctAnswers[1] = 40;
-                break;
-            case "2":
-                questions[0, 0] = "20 - 5"; correctAnswers[0] = 15;
-                questions[1, 0] = "100 - 33"; correctAnswers[1] = 67;
-                break;
-            case "3":
-                questions[0, 0] = "3 * 4"; correctAnswers[0] = 12;
-                questions[1, 0] = "7 * 6"; correctAnswers[1] = 42;
-                break;
-            case "4":
-                questions[0, 0] = "12 / 4"; correctAnswers[0] = 3;
-                questions[1, 0] = "50 / 10"; correctAnswers[1] = 5;
-                break;
-            default:
-                validChoice = false;
-                Console.WriteLine("Invalid choice!");
-                break;
-        }
-
-        if (!validChoice)
-            return;
-
-        Console.WriteLine("\n--- Questions ---");
-        int correctCount = 0;
-
-        for (int i = 0; i < 2; i++)
-        {
-            Console.Write($"Q{i + 1}: {questions[i, 0]} = ? ");
-            string? userInput = Console.ReadLine();
-
-            if (int.TryParse(userInput ?? string.Empty, out int userAnswer))
+            int a = 0, b = 0, res = 0;
+            switch (op)
             {
-                if (userAnswer == correctAnswers[i])
-                {
-                    Console.WriteLine("Correct\n");
-                    correctCount++;
-                }
-                else
-                {
-                    Console.WriteLine($"Incorrect! The correct answer is: {correctAnswers[i]}\n");
-                }
+                case "1": a = rnd.Next(1, 30); b = rnd.Next(1, 30); res = a + b; questions[i] = $"{a} + {b}"; break;
+                case "2": a = rnd.Next(20, 100); b = rnd.Next(1, 20); res = a - b; questions[i] = $"{a} - {b}"; break;
+                case "3": a = rnd.Next(2, 10); b = rnd.Next(2, 10); res = a * b; questions[i] = $"{a} * {b}"; break;
+                case "4": b = rnd.Next(2, 10); res = rnd.Next(2, 10); a = b * res; questions[i] = $"{a} / {b}"; break;
+            }
+            answers[i] = res;
+        }
+
+        int correct = 0;
+        for (int i = 0; i < NumQuestions; i++)
+        {
+            Console.Write($"Q{i + 1}: {questions[i]} = ");
+            if (int.TryParse(Console.ReadLine(), out int userAns) && userAns == answers[i])
+            {
+                Console.WriteLine(" Correct!\n");
+                correct++;
             }
             else
-            {
-                Console.WriteLine($"Invalid answer. The correct answer is: {correctAnswers[i]}\n");
-            }
+                Console.WriteLine($"  Incorrect! Correct answer: {answers[i]}\n");
         }
 
-        // Update daily total correct answers
-        dailyTotalCorrect += correctCount;
-        File.WriteAllText(dailyTotalFile, dailyTotalCorrect.ToString());
+        totalCorrect += correct;
+        File.WriteAllText(TotalFile, totalCorrect.ToString());
 
-        // Output results
-        Console.WriteLine("\n----- Results -----");
-        Console.WriteLine($"Name: {name}");
-        Console.WriteLine($"ID: {id}");
-        Console.WriteLine($"Correct answers this session: {correctCount} / 2");
-        Console.WriteLine($"Date: {date}");
-        Console.WriteLine($"Total correct answers today: {dailyTotalCorrect}");
+        Console.WriteLine("\n--- Result ---");
+        Console.WriteLine($"Name    : {name}");
+        Console.WriteLine($"ID      : {id}");
+        Console.WriteLine($"Score   : {correct} / {NumQuestions}");
+        Console.WriteLine($"All-time Correct: {totalCorrect}");
+        Console.WriteLine($"Date    : {DateTime.Now:yyyy-MM-dd}");
     }
 }

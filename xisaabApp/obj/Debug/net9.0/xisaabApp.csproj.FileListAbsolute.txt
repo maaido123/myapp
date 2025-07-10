@@ -12,3 +12,4 @@ C:\Users\zamzam\Desktop\developers\xisaabApp\obj\Debug\net9.0\refint\xisaabApp.d
 C:\Users\zamzam\Desktop\developers\xisaabApp\obj\Debug\net9.0\xisaabApp.pdb
 C:\Users\zamzam\Desktop\developers\xisaabApp\obj\Debug\net9.0\xisaabApp.genruntimeconfig.cache
 C:\Users\zamzam\Desktop\developers\xisaabApp\obj\Debug\net9.0\ref\xisaabApp.dll
+C:\Users\zamzam\Desktop\developers\xisaabApp\obj\Debug\net9.0\xisaabApp.sourcelink.json
